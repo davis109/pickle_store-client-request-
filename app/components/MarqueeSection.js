@@ -492,7 +492,7 @@ export default function MarqueeSection() {
               {galleryImages.map((image, index) => (
                 <motion.div
                   key={image.id}
-                  className="gallery-image-container relative w-[300px] h-[200px] rounded overflow-hidden flex-shrink-0 shadow-lg border border-amber-100"
+                  className="gallery-image-container relative w-[350px] h-[280px] rounded overflow-hidden flex-shrink-0 shadow-lg border border-amber-100"
                   variants={galleryItemVariants}
                   custom={index}
                   initial="hidden"
@@ -552,12 +552,12 @@ export default function MarqueeSection() {
                   }}
                   transition={{ duration: 0.3 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  className="relative w-52 h-64 rounded-lg overflow-hidden shadow-md flex-shrink-0 bg-white border border-amber-100"
+                  className="relative w-64 h-96 rounded-lg overflow-hidden shadow-md flex-shrink-0 bg-white border border-amber-100"
                 >
                   <div className={`absolute top-3 left-3 z-10 ${product.color} text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse`}>
                     {product.badge}
                   </div>
-                  <div className="w-full h-40 relative overflow-hidden">
+                  <div className="w-full h-64 relative overflow-hidden">
                     <Image
                       src={product.image}
                       alt={product.name}
