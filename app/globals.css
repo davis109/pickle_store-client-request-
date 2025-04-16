@@ -7,6 +7,9 @@
   --color-primary-dark: #166534;
   --color-secondary: #f0fdf4;
   --color-accent: #84cc16;
+  --scrollbar-color: #d97706; /* amber-600 */
+  --scrollbar-hover-color: #f59e0b; /* amber-500 */
+  --scrollbar-bg: #fef3c7; /* amber-100 */
 }
 
 @theme inline {
@@ -20,6 +23,7 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --scrollbar-bg: #422006; /* dark amber-900 */
   }
 }
 
@@ -27,6 +31,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 /* Custom utilities */
@@ -59,20 +65,64 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 0 0 2px rgba(21, 128, 61, 0.2);
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - Webkit (Chrome, Safari, newer versions of Opera) */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--scrollbar-bg);
+  border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
-  border-radius: 5px;
+  background: linear-gradient(to bottom, #d97706, #f59e0b); /* amber-600 to amber-500 */
+  border-radius: 8px;
+  border: 2px solid var(--scrollbar-bg);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary-dark);
+  background: linear-gradient(to bottom, #b45309, #d97706); /* amber-700 to amber-600 */
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--scrollbar-bg);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg);
+}
+
+/* Custom animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float-animation {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes spice-fall {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
 }
